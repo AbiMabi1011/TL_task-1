@@ -1206,7 +1206,7 @@
     <div class="kpi-bar">
       <div class="kpi-item">
         <span class="kpi-label">Sales:</span>
-        <span class="kpi-val highlight" id="kpiRevenue">$0.00</span>
+        <span class="kpi-val highlight" id="kpiRevenue">LKR 0.00</span>
       </div>
       <div class="kpi-item">
         <span class="kpi-label">Holds:</span>
@@ -1392,19 +1392,19 @@
       <div class="cart-summary-bottom">
         <div class="calc-line">
           <span>Subtotal</span>
-          <span id="txtSubtotal">$0.00</span>
+          <span id="txtSubtotal">LKR 0.00</span>
         </div>
         <div class="calc-line" id="rowDiscount" style="display: none; color: #34d399;">
           <span>Discount Applied</span>
-          <span id="txtDiscount">-$0.00</span>
+          <span id="txtDiscount">-LKR 0.00</span>
         </div>
         <div class="calc-line">
           <span>Estimated Tax</span>
-          <span id="txtTax">$0.00</span>
+          <span id="txtTax">LKR 0.00</span>
         </div>
         <div class="calc-line total-hero">
           <span>Amount Due</span>
-          <span id="txtTotal" style="color: #a78bfa;">$0.00</span>
+          <span id="txtTotal" style="color: #a78bfa;">LKR 0.00</span>
         </div>
 
         <div class="cart-btn-row">
@@ -1524,21 +1524,21 @@
 
       <!-- Cash Change block -->
       <div id="cashCalcBox" style="display: none; background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); padding: 0.85rem; border-radius: var(--radius-md); margin-bottom: 1rem;">
-        <label style="font-size: 0.8rem; color: var(--text-secondary);">Cash Received ($):</label>
+        <label style="font-size: 0.8rem; color: var(--text-secondary);">Cash Received (LKR):</label>
         <input type="number" id="cashReceivedInput" class="input-field" style="width: 100%; margin-top: 4px;" placeholder="0.00" oninput="calculateChange()">
         <div style="display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.9rem; font-weight: 700;">
           <span>Change Due:</span>
-          <span id="cashChangeVal" style="color: #34d399;">$0.00</span>
+          <span id="cashChangeVal" style="color: #34d399;">LKR 0.00</span>
         </div>
       </div>
 
       <!-- Split Payment block -->
       <div id="splitCalcBox" style="display: none; background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle); padding: 0.85rem; border-radius: var(--radius-md); margin-bottom: 1rem;">
-        <label style="font-size: 0.8rem; color: var(--text-secondary);">Cash Portion ($):</label>
+        <label style="font-size: 0.8rem; color: var(--text-secondary);">Cash Portion (LKR):</label>
         <input type="number" id="splitCashInput" class="input-field" style="width: 100%; margin-top: 4px;" placeholder="0.00" oninput="calculateSplit()">
         <div style="display: flex; justify-content: space-between; margin-top: 0.5rem; font-size: 0.9rem; font-weight: 700;">
           <span>Card Portion Due:</span>
-          <span id="splitCardDue" style="color: #a78bfa;">$0.00</span>
+          <span id="splitCardDue" style="color: #a78bfa;">LKR 0.00</span>
         </div>
       </div>
 
@@ -1640,8 +1640,8 @@
         </div>
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
           <div>
-            <label style="font-size: 0.8rem; color: var(--text-secondary);">Price ($ USD)</label>
-            <input type="number" step="0.01" id="newProdPrice" class="input-field" style="width: 100%; margin-top: 4px;" placeholder="4.50">
+            <label style="font-size: 0.8rem; color: var(--text-secondary);">Price (LKR)</label>
+            <input type="number" step="1" id="newProdPrice" class="input-field" style="width: 100%; margin-top: 4px;" placeholder="850.00">
           </div>
           <div>
             <label style="font-size: 0.8rem; color: var(--text-secondary);">Starting Stock</label>
@@ -1713,7 +1713,7 @@
 
     function openDrawerSound() {
       if (soundFxEnabled) playBeep(1200, 'square', 0.15);
-      showToast('Cash drawer kicked open (Float: $200.00)', 'info');
+      showToast('Cash drawer kicked open (Float: LKR 50,000.00)', 'info');
     }
 
     // State
@@ -1953,15 +1953,15 @@
       try {
         const res = await fetch('/stats');
         const data = await res.json();
-        document.getElementById('kpiRevenue').innerText = `$${data.totalRevenue || '0.00'}`;
+        document.getElementById('kpiRevenue').innerText = `LKR ${Number(data.totalRevenue || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
         document.getElementById('kpiHolds').innerText = data.activeReservations || 0;
         document.getElementById('kpiLowStock').innerText = data.lowStock || 0;
 
-        document.getElementById('shiftGrossSales').innerText = `$${data.totalRevenue || '0.00'}`;
+        document.getElementById('shiftGrossSales').innerText = `LKR ${Number(data.totalRevenue || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
         const taxVal = (parseFloat(data.totalRevenue || 0) * 0.08 / 1.08).toFixed(2);
-        document.getElementById('shiftTaxVal').innerText = `$${taxVal}`;
-        const expectedCash = (200 + parseFloat(data.totalRevenue || 0)).toFixed(2);
-        document.getElementById('shiftExpectedCash').innerText = `$${expectedCash}`;
+        document.getElementById('shiftTaxVal').innerText = `LKR ${Number(taxVal).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+        const expectedCash = (50000 + parseFloat(data.totalRevenue || 0)).toFixed(2);
+        document.getElementById('shiftExpectedCash').innerText = `LKR ${Number(expectedCash).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
       } catch (e) {}
     }
 
@@ -2100,7 +2100,7 @@
               <h3 class="card-title">${escapeHtml(p.name)}</h3>
               <span class="stock-chip ${chipClass}">${chipText}</span>
               <div class="card-price">
-                <span class="curr-symbol">$</span>${Number(p.price).toFixed(2)}
+                <span class="curr-symbol" style="font-size: 0.9rem; font-weight: 700; color: var(--accent-light);">LKR</span> ${Number(p.price).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
               </div>
             </div>
             <button class="card-btn" ${p.stock === 0 ? 'disabled' : ''}>
@@ -2265,7 +2265,7 @@
           <div class="cart-row">
             <div class="cart-row-left">
               <h4>${escapeHtml(product.name)}</h4>
-              <p>$${Number(product.price).toFixed(2)} × ${quantity} = <strong>$${lineTotal.toFixed(2)}</strong></p>
+              <p>LKR ${Number(product.price).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} × ${quantity} = <strong>LKR ${lineTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></p>
             </div>
             <div class="stepper">
               <button class="step-btn" onclick="updateCartQty(${product.id}, -1)">-</button>
@@ -2290,18 +2290,18 @@
       let tax = taxEnabled ? (discountedSubtotal * 0.08) : 0;
       let finalTotal = discountedSubtotal + tax;
 
-      document.getElementById('txtSubtotal').innerText = `$${subtotal.toFixed(2)}`;
+      document.getElementById('txtSubtotal').innerText = `LKR ${subtotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
       
       const discRow = document.getElementById('rowDiscount');
       if (discountPercent > 0) {
         discRow.style.display = 'flex';
-        document.getElementById('txtDiscount').innerText = `-$${discountAmt.toFixed(2)} (${discountPercent}%)`;
+        document.getElementById('txtDiscount').innerText = `-LKR ${discountAmt.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} (${discountPercent}%)`;
       } else {
         discRow.style.display = 'none';
       }
 
-      document.getElementById('txtTax').innerText = `$${tax.toFixed(2)}`;
-      document.getElementById('txtTotal').innerText = `$${finalTotal.toFixed(2)}`;
+      document.getElementById('txtTax').innerText = `LKR ${tax.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+      document.getElementById('txtTotal').innerText = `LKR ${finalTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
     }
 
     // Checkout & Order Reservation
@@ -2332,7 +2332,7 @@
         soundSuccess();
         showToast(`Stock locked atomically for Order #${data.id}`, 'success');
 
-        document.getElementById('modalOrderId').innerText = `#${data.id} ($${Number(data.totalAmount).toFixed(2)})`;
+        document.getElementById('modalOrderId').innerText = `#${data.id} (LKR ${Number(data.totalAmount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })})`;
         openModal('paymentModal');
 
         clearCart();
@@ -2360,7 +2360,7 @@
       const rec = parseFloat(document.getElementById('cashReceivedInput').value) || 0;
       const due = Number(pendingCheckoutOrder.totalAmount);
       const change = Math.max(0, rec - due);
-      document.getElementById('cashChangeVal').innerText = `$${change.toFixed(2)}`;
+      document.getElementById('cashChangeVal').innerText = `LKR ${change.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
     }
 
     function calculateSplit() {
@@ -2368,7 +2368,7 @@
       const total = Number(pendingCheckoutOrder.totalAmount);
       const cashPortion = parseFloat(document.getElementById('splitCashInput').value) || 0;
       const cardDue = Math.max(0, total - cashPortion);
-      document.getElementById('splitCardDue').innerText = `$${cardDue.toFixed(2)}`;
+      document.getElementById('splitCardDue').innerText = `LKR ${cardDue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
     }
 
     async function executeSelectedPayment() {
@@ -2505,7 +2505,7 @@
         return `
           <tr>
             <td><strong>#${o.id}</strong></td>
-            <td style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: #fff;">$${Number(o.totalAmount).toFixed(2)}</td>
+            <td style="font-family: 'JetBrains Mono', monospace; font-weight: 700; color: #fff;">LKR ${Number(o.totalAmount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
             <td><span class="status-badge status-${o.status}">${o.status}</span></td>
             <td>${expireInfo}</td>
             <td style="font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--text-dim);">${escapeHtml(o.idempotencyKey || 'N/A')}</td>
@@ -2557,9 +2557,9 @@
           <div class="receipt-row"><span>TOTAL TRANSACTIONS:</span><strong>${d.totalOrders}</strong></div>
           <div class="receipt-row"><span>PAID ORDERS:</span><strong>${d.paidCount}</strong></div>
           <div class="receipt-divider"></div>
-          <div class="receipt-row"><span>GROSS SALES:</span><strong>$${d.grossSales}</strong></div>
-          <div class="receipt-row"><span>NET SALES:</span><strong>$${d.netSales}</strong></div>
-          <div class="receipt-row"><span>TAX COLLECTED (8%):</span><strong>$${d.taxCollected}</strong></div>
+          <div class="receipt-row"><span>GROSS SALES:</span><strong>LKR ${Number(d.grossSales).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></div>
+          <div class="receipt-row"><span>NET SALES:</span><strong>LKR ${Number(d.netSales).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></div>
+          <div class="receipt-row"><span>TAX COLLECTED (8%):</span><strong>LKR ${Number(d.taxCollected).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></div>
           <div class="receipt-divider"></div>
           <div class="receipt-row"><span>TOTAL INVENTORY UNITS:</span><strong>${d.totalProductsInStock}</strong></div>
           <div class="receipt-divider"></div>
@@ -2612,7 +2612,7 @@
         ${(order.items || []).map(i => `
           <div class="receipt-row">
             <span>Prod #${i.productId} (x${i.quantity})</span>
-            <span>$${(Number(i.priceAtOrder) * i.quantity).toFixed(2)}</span>
+            <span>LKR ${(Number(i.priceAtOrder) * i.quantity).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
           </div>
         `).join('')}
 
@@ -2620,7 +2620,7 @@
 
         <div class="receipt-row" style="font-size: 1rem; font-weight: 900;">
           <span>TOTAL PAID:</span>
-          <span>$${Number(order.totalAmount).toFixed(2)}</span>
+          <span>LKR ${Number(order.totalAmount).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
         </div>
 
         <div class="receipt-divider"></div>

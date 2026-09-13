@@ -2,6 +2,7 @@
 
 > **Brand**: am_cafe  
 > **Location**: Hospital Road, Jaffna, Sri Lanka 🇱🇰  
+> **Currency**: Sri Lankan Rupee (LKR)  
 > Concurrency-safe, enterprise-grade Point of Sale (POS) system tailored for cafes, specialty roasters, and bakeries. Built with Node.js, Express, Prisma ORM, and MySQL.
 
 ---
