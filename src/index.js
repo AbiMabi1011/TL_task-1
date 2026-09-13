@@ -19,7 +19,7 @@ app.get('/health', (req, res) => res.json({ ok: true }));
 
 app.get('/api', (req, res) => {
   res.json({
-    name: 'ABI POS API',
+    name: 'am_cafe POS API',
     status: 'running',
     endpoints: {
       health: 'GET /health',

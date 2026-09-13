@@ -1,7 +1,8 @@
-# ABI POS — Enterprise Point of Sale & Concurrency Engine 🇱🇰
+# am_cafe — Specialty Coffee & Artisan Bakery POS ☕🇱🇰
 
+> **Brand**: am_cafe  
 > **Location**: Hospital Road, Jaffna, Sri Lanka 🇱🇰  
-> Concurrency-safe, enterprise-grade Point of Sale (POS) system built with Node.js, Express, Prisma ORM, and MySQL.
+> Concurrency-safe, enterprise-grade Point of Sale (POS) system tailored for cafes, specialty roasters, and bakeries. Built with Node.js, Express, Prisma ORM, and MySQL.
 
 ---
 

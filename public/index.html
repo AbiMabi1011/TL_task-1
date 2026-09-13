@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ABI POS — Enterprise Point of Sale</title>
+  <title>am_cafe — Specialty Coffee & Artisan Bakery POS</title>
   
   <!-- Premium Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1195,10 +1195,10 @@
   <!-- Streamlined Top Header -->
   <header>
     <div class="brand-wrap">
-      <div class="brand-symbol">✦</div>
+      <div class="brand-symbol" style="font-size: 1.35rem;">☕</div>
       <div class="brand-text">
-        <h1>ABI POS <span class="brand-loc">Jaffna 🇱🇰</span></h1>
-        <p>Enterprise Concurrency Engine</p>
+        <h1>am_cafe <span class="brand-loc">Jaffna 🇱🇰</span></h1>
+        <p>Specialty Coffee & Artisan Bakery</p>
       </div>
     </div>
 
@@ -1293,10 +1293,11 @@
 
       <!-- Categories Pills -->
       <div class="category-scroll" id="categoryTabs">
-        <div class="category-pill active" onclick="setCategory('All', this)">All Items</div>
-        <div class="category-pill" onclick="setCategory('Beverages', this)">☕ Beverages</div>
-        <div class="category-pill" onclick="setCategory('Bakery', this)">🥐 Bakery & Snacks</div>
-        <div class="category-pill" onclick="setCategory('Merch', this)">✨ Merchandise</div>
+        <div class="category-pill active" onclick="setCategory('All', this)">All Cafe Menu</div>
+        <div class="category-pill" onclick="setCategory('Coffee', this)">☕ Coffee & Brews</div>
+        <div class="category-pill" onclick="setCategory('Bakery', this)">🥐 Fresh Pastries</div>
+        <div class="category-pill" onclick="setCategory('Brunch', this)">🥪 Brunch & Toast</div>
+        <div class="category-pill" onclick="setCategory('Retail', this)">✨ Beans & Merch</div>
         <div class="category-pill" onclick="setCategory('Stock-Low', this)">⚠️ Low Stock</div>
       </div>
 
@@ -1966,24 +1967,30 @@
 
     function getItemCategory(p) {
       const name = p.name.toLowerCase();
-      if (name.includes('brew') || name.includes('coffee') || name.includes('macchiato') || name.includes('latte') || name.includes('water') || name.includes('tea')) return 'Beverages';
-      if (name.includes('croissant') || name.includes('cookie') || name.includes('toast') || name.includes('snack') || name.includes('bread')) return 'Bakery';
-      if (name.includes('mug') || name.includes('bean') || name.includes('merch') || name.includes('tshirt') || name.includes('bag')) return 'Merch';
-      return 'Merch';
+      if (name.includes('espresso') || name.includes('brew') || name.includes('coffee') || name.includes('macchiato') || name.includes('latte') || name.includes('chai') || name.includes('water') || name.includes('tea')) return 'Coffee';
+      if (name.includes('croissant') || name.includes('cookie') || name.includes('muffin') || name.includes('pastry') || name.includes('cake') || name.includes('bread') || name.includes('snack')) return 'Bakery';
+      if (name.includes('toast') || name.includes('bagel') || name.includes('panini') || name.includes('sandwich') || name.includes('egg') || name.includes('brunch')) return 'Brunch';
+      if (name.includes('mug') || name.includes('bean') || name.includes('roast') || name.includes('merch') || name.includes('cup') || name.includes('bag')) return 'Retail';
+      return 'Coffee';
     }
 
     function getItemEmoji(name) {
       const n = name.toLowerCase();
-      if (n.includes('cold brew')) return '🧊';
+      if (n.includes('espresso')) return '☕';
+      if (n.includes('cold brew') || n.includes('iced')) return '🧊';
       if (n.includes('macchiato') || n.includes('latte') || n.includes('coffee')) return '☕';
-      if (n.includes('water')) return '💧';
+      if (n.includes('matcha')) return '🍵';
+      if (n.includes('chai')) return '🫖';
+      if (n.includes('water') || n.includes('sparkling')) return '💧';
       if (n.includes('croissant')) return '🥐';
       if (n.includes('cookie')) return '🍪';
-      if (n.includes('toast')) return '🥪';
+      if (n.includes('muffin')) return '🧁';
+      if (n.includes('toast') || n.includes('avocado')) return '🥑';
+      if (n.includes('bagel') || n.includes('salmon')) return '🥯';
+      if (n.includes('panini') || n.includes('sandwich')) return '🥪';
       if (n.includes('mug')) return '🏺';
-      if (n.includes('bean')) return '🫘';
-      if (n.includes('collector') || n.includes('limited')) return '💎';
-      return '📦';
+      if (n.includes('bean') || n.includes('roast')) return '🫘';
+      return '☕';
     }
 
     function setCategory(cat, el) {
@@ -1994,29 +2001,37 @@
     }
 
     const CATEGORY_META = {
-      'Beverages': {
-        name: 'Beverages',
-        color: '#06b6d4',
-        glowRgb: '6, 182, 212',
-        gradient: 'linear-gradient(135deg, #0284c7 0%, #06b6d4 100%)',
-        badgeBg: 'rgba(6, 182, 212, 0.15)',
-        badgeBorder: 'rgba(6, 182, 212, 0.3)'
+      'Coffee': {
+        name: 'Coffee & Brew',
+        color: '#38bdf8',
+        glowRgb: '56, 189, 248',
+        gradient: 'linear-gradient(135deg, #0284c7 0%, #38bdf8 100%)',
+        badgeBg: 'rgba(56, 189, 248, 0.15)',
+        badgeBorder: 'rgba(56, 189, 248, 0.3)'
       },
       'Bakery': {
-        name: 'Bakery',
-        color: '#f59e0b',
-        glowRgb: '245, 158, 11',
-        gradient: 'linear-gradient(135deg, #d97706 0%, #f59e0b 100%)',
-        badgeBg: 'rgba(245, 158, 11, 0.15)',
-        badgeBorder: 'rgba(245, 158, 11, 0.3)'
+        name: 'Fresh Pastry',
+        color: '#fbbf24',
+        glowRgb: '251, 191, 36',
+        gradient: 'linear-gradient(135deg, #d97706 0%, #fbbf24 100%)',
+        badgeBg: 'rgba(251, 191, 36, 0.15)',
+        badgeBorder: 'rgba(251, 191, 36, 0.3)'
       },
-      'Merch': {
-        name: 'Merchandise',
-        color: '#a855f7',
-        glowRgb: '168, 85, 247',
+      'Brunch': {
+        name: 'Brunch & Toast',
+        color: '#34d399',
+        glowRgb: '52, 211, 153',
+        gradient: 'linear-gradient(135deg, #059669 0%, #34d399 100%)',
+        badgeBg: 'rgba(52, 211, 153, 0.15)',
+        badgeBorder: 'rgba(52, 211, 153, 0.3)'
+      },
+      'Retail': {
+        name: 'Beans & Merch',
+        color: '#c084fc',
+        glowRgb: '192, 132, 252',
         gradient: 'linear-gradient(135deg, #7c3aed 0%, #c084fc 100%)',
-        badgeBg: 'rgba(168, 85, 247, 0.15)',
-        badgeBorder: 'rgba(168, 85, 247, 0.3)'
+        badgeBg: 'rgba(192, 132, 252, 0.15)',
+        badgeBorder: 'rgba(192, 132, 252, 0.3)'
       }
     };
 
@@ -2524,7 +2539,7 @@
         sheet.innerHTML = `
           <div class="receipt-header">
             <div style="font-size: 1.1rem; font-weight: 900;">DAILY Z-REPORT / SHIFT SUMMARY</div>
-            <div style="font-size: 0.75rem; font-weight: 600; color: #444;">ABI POS TERMINAL #01 — JAFFNA, SRI LANKA 🇱🇰</div>
+            <div style="font-size: 0.75rem; font-weight: 600; color: #444;">am_cafe CAFE REGISTER #01 — JAFFNA, SRI LANKA 🇱🇰</div>
             <div style="font-size: 0.75rem;">${new Date().toLocaleString()}</div>
           </div>
           <div class="receipt-row"><span>REGISTER:</span><strong>${d.registerId}</strong></div>
@@ -2561,11 +2576,11 @@
       const sheet = document.getElementById('receiptContent');
       sheet.innerHTML = `
         <div class="receipt-header">
-          <div style="font-size: 1.15rem; font-weight: 900; letter-spacing: 0.05em; color: #111;">ABI POS STORE</div>
+          <div style="font-size: 1.25rem; font-weight: 900; letter-spacing: 0.05em; color: #111;">am_cafe ☕</div>
           <div style="font-size: 0.78rem; font-weight: 600; color: #333;">Hospital Road, Jaffna, Sri Lanka 🇱🇰</div>
-          <div style="font-size: 0.75rem; color: #555;">Hotline: +94 21 222 3456 | support@abipos.lk</div>
-          <div style="font-size: 0.75rem; margin-top: 4px;">REGISTER: #01 | CASHIER: ${currentCashier}</div>
-          <div style="font-size: 0.75rem;">CUSTOMER: ${currentCustomer}</div>
+          <div style="font-size: 0.75rem; color: #555;">Hotline: +94 21 222 3456 | cafe@amcafe.lk</div>
+          <div style="font-size: 0.75rem; margin-top: 4px;">BARISTA / REGISTER: ${currentCashier} (POS #01)</div>
+          <div style="font-size: 0.75rem;">GUEST: ${currentCustomer}</div>
           <div style="font-size: 0.75rem;">${now.toLocaleDateString()} ${now.toLocaleTimeString()}</div>
         </div>
 
@@ -2584,7 +2599,7 @@
 
         <div class="receipt-divider"></div>
 
-        <div style="margin-bottom: 0.5rem; font-weight: 700;">LINE ITEMS:</div>
+        <div style="margin-bottom: 0.5rem; font-weight: 700;">CAFE ORDER ITEMS:</div>
         ${(order.items || []).map(i => `
           <div class="receipt-row">
             <span>Prod #${i.productId} (x${i.quantity})</span>
@@ -2601,10 +2616,10 @@
 
         <div class="receipt-divider"></div>
         <div style="text-align: center; margin-top: 0.85rem; font-size: 0.75rem; color: #222; line-height: 1.5;">
-          ✨ <strong>Thank you for choosing ABI POS!</strong> ✨<br>
-          <em>"Serving you with love from the heart of Jaffna.<br>
-          Your smile is our greatest receipt — see you again soon!"</em><br>
-          <span style="font-size: 0.68rem; color: #777; margin-top: 4px; display: inline-block;">✦ Concurrency Verified & Powered by ABI Engine ✦</span>
+          ✨ <strong>Thank you for choosing am_cafe!</strong> ✨<br>
+          <em>"Freshly brewed with passion and warmth in the heart of Jaffna.<br>
+          May every sip brighten your day — see you again soon!"</em><br>
+          <span style="font-size: 0.68rem; color: #777; margin-top: 4px; display: inline-block;">✦ Concurrency Safe Barista Register ✦</span>
         </div>
       `;
     }
