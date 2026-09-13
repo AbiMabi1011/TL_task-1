@@ -1977,19 +1977,28 @@
     function getItemEmoji(name) {
       const n = name.toLowerCase();
       if (n.includes('espresso')) return '☕';
-      if (n.includes('cold brew') || n.includes('iced')) return '🧊';
+      if (n.includes('flat white') || n.includes('cappuccino') || n.includes('americano') || n.includes('cortado')) return '☕';
+      if (n.includes('cold brew') || n.includes('iced') || n.includes('drip')) return '🧊';
       if (n.includes('macchiato') || n.includes('latte') || n.includes('coffee')) return '☕';
+      if (n.includes('mocha')) return '🍫';
       if (n.includes('matcha')) return '🍵';
       if (n.includes('chai')) return '🫖';
+      if (n.includes('cooler') || n.includes('lemonade') || n.includes('yuzu')) return '🍋';
       if (n.includes('water') || n.includes('sparkling')) return '💧';
       if (n.includes('croissant')) return '🥐';
+      if (n.includes('chocolat')) return '🍫';
       if (n.includes('cookie')) return '🍪';
       if (n.includes('muffin')) return '🧁';
+      if (n.includes('cake')) return '🍰';
+      if (n.includes('roll') || n.includes('cinnamon')) return '🥨';
+      if (n.includes('danish') || n.includes('pastry')) return '🥮';
       if (n.includes('toast') || n.includes('avocado')) return '🥑';
       if (n.includes('bagel') || n.includes('salmon')) return '🥯';
       if (n.includes('panini') || n.includes('sandwich')) return '🥪';
+      if (n.includes('bacon') || n.includes('bun')) return '🥓';
       if (n.includes('mug')) return '🏺';
-      if (n.includes('bean') || n.includes('roast')) return '🫘';
+      if (n.includes('tumbler')) return '🥤';
+      if (n.includes('bean') || n.includes('roast') || n.includes('yirgacheffe')) return '🫘';
       return '☕';
     }
 
