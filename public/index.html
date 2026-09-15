@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>am_cafe — Specialty Coffee & Artisan Bakery POS</title>
+  <title>ABI POS | am_cafe — Specialty Coffee & Artisan Bakery (Jaffna, Sri Lanka)</title>
+  <link rel="icon" type="image/png" href="/logo.png">
   
   <!-- Premium Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,6 +48,14 @@
       -webkit-font-smoothing: antialiased;
     }
 
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       background-color: var(--bg-base);
       color: var(--text-main);
@@ -54,6 +63,7 @@
       display: flex;
       flex-direction: column;
       overflow-x: hidden;
+      width: 100%;
       background-image: 
         radial-gradient(circle at 12% 18%, rgba(99, 102, 241, 0.18) 0%, transparent 40%),
         radial-gradient(circle at 88% 82%, rgba(217, 70, 239, 0.14) 0%, transparent 45%),
@@ -66,13 +76,17 @@
       background: rgba(12, 16, 28, 0.88);
       backdrop-filter: var(--glass-blur);
       border-bottom: 1px solid var(--border-subtle);
-      padding: 0.75rem 2rem;
+      padding: 0.75rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
       z-index: 50;
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+      gap: 0.75rem;
     }
 
     .brand-wrap {
@@ -81,19 +95,29 @@
       gap: 0.85rem;
     }
 
+    .brand-logo-img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 0 16px rgba(217, 119, 6, 0.4), 0 0 8px rgba(245, 158, 11, 0.3);
+      border: 2px solid rgba(245, 158, 11, 0.6);
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .brand-wrap:hover .brand-logo-img {
+      transform: scale(1.08) rotate(5deg);
+      box-shadow: 0 0 22px rgba(245, 158, 11, 0.65);
+    }
+
     .brand-symbol {
-      width: 40px;
-      height: 40px;
-      background: var(--accent-gradient);
-      border-radius: 12px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.35rem;
       box-shadow: 0 4px 18px var(--accent-glow);
-      font-family: 'Outfit', sans-serif;
-      font-weight: 900;
-      color: white;
     }
 
     .brand-text h1 {
@@ -284,17 +308,59 @@
     /* Main Container */
     .pos-layout {
       display: grid;
-      grid-template-columns: 1fr 425px;
+      grid-template-columns: minmax(0, 1fr) 420px;
       gap: 1.5rem;
-      padding: 1.25rem 2rem;
+      padding: 1.25rem 1.5rem;
       flex: 1;
       max-width: 1750px;
       margin: 0 auto;
       width: 100%;
+      box-sizing: border-box;
+      min-width: 0;
     }
 
-    @media (max-width: 1180px) {
-      .pos-layout { grid-template-columns: 1fr; }
+    @media (max-width: 1350px) {
+      .kpi-bar {
+        display: none !important;
+      }
+    }
+
+    @media (max-width: 1200px) {
+      .pos-layout {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+      }
+      .pos-cart-panel {
+        position: static !important;
+        height: auto !important;
+        max-height: 85vh;
+        margin-top: 1rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 0.6rem 1rem;
+      }
+      .brand-text p {
+        display: none;
+      }
+      .nav-actions {
+        gap: 0.4rem;
+      }
+      #btnSoundToggle span:last-child {
+        display: none;
+      }
+      .pos-layout {
+        padding: 0.75rem 0.5rem;
+      }
+      .search-scanner-box {
+        min-width: 100%;
+        flex-direction: column;
+      }
+      #barcodeInput {
+        max-width: 100% !important;
+      }
     }
 
     /* Left Section: Catalog & Operations */
@@ -302,6 +368,9 @@
       display: flex;
       flex-direction: column;
       gap: 1.25rem;
+      min-width: 0;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     /* Parked Orders Bar */
@@ -1188,6 +1257,76 @@
       from { transform: translateX(100%) scale(0.9); opacity: 0; }
       to { transform: translateX(0) scale(1); opacity: 1; }
     }
+
+    /* Elegant Creative Footer */
+    .pos-footer {
+      margin-top: auto;
+      background: rgba(10, 14, 26, 0.92);
+      backdrop-filter: var(--glass-blur);
+      border-top: 1px solid var(--border-subtle);
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .footer-left {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+
+    .footer-creative-line {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #a78bfa 0%, #34d399 50%, #f472b6 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 0.01em;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .footer-sub {
+      font-size: 0.72rem;
+      color: var(--text-dim);
+    }
+
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 0.76rem;
+      color: var(--text-secondary);
+    }
+
+    .footer-pill {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 0.25rem 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    @media (max-width: 768px) {
+      .pos-footer {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem;
+      }
+      .footer-left, .footer-right {
+        align-items: center;
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1195,10 +1334,10 @@
   <!-- Streamlined Top Header -->
   <header>
     <div class="brand-wrap">
-      <div class="brand-symbol" style="font-size: 1.35rem;">☕</div>
+      <img src="/logo.png" alt="am_cafe Logo" class="brand-logo-img" onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☕</text></svg>';">
       <div class="brand-text">
-        <h1>am_cafe <span class="brand-loc">Jaffna 🇱🇰</span></h1>
-        <p>Specialty Coffee & Artisan Bakery</p>
+        <h1>ABI POS <span style="font-weight: 400; opacity: 0.7; font-size: 1rem;">| am_cafe</span> <span class="brand-loc">Jaffna 🇱🇰</span></h1>
+        <p>Specialty Coffee & Artisan Bakery • Hospital Road, Jaffna</p>
       </div>
     </div>
 
@@ -1254,8 +1393,8 @@
           <button class="menu-popover-item" onclick="exportCsvReportFromMenu()">
             <span>📊</span> Export Sales CSV
           </button>
-          <button class="menu-popover-item" onclick="seedSampleCatalogFromMenu()">
-            <span>📦</span> Seed Demo Catalog
+          <button class="menu-popover-item" onclick="seedSampleCatalogFromMenu()" style="color: #a78bfa; font-weight: 700;">
+            <span>🔄</span> Reset & Reload 50 Jaffna Items
           </button>
           <div class="menu-popover-divider"></div>
           <button class="menu-popover-item" onclick="openCustomerModal()">
@@ -1294,10 +1433,12 @@
       <!-- Categories Pills -->
       <div class="category-scroll" id="categoryTabs">
         <div class="category-pill active" onclick="setCategory('All', this)">All Cafe Menu</div>
-        <div class="category-pill" onclick="setCategory('Coffee', this)">☕ Coffee & Brews</div>
-        <div class="category-pill" onclick="setCategory('Bakery', this)">🥐 Fresh Pastries</div>
-        <div class="category-pill" onclick="setCategory('Brunch', this)">🥪 Brunch & Toast</div>
-        <div class="category-pill" onclick="setCategory('Retail', this)">✨ Beans & Merch</div>
+        <div class="category-pill" onclick="setCategory('Hot', this)">☕ Hot Beverages</div>
+        <div class="category-pill" onclick="setCategory('Cold', this)">🧊 Cold Beverages</div>
+        <div class="category-pill" onclick="setCategory('Snacks', this)">🥟 Savory Snacks</div>
+        <div class="category-pill" onclick="setCategory('Sweets', this)">🍨 Desserts & Sweets</div>
+        <div class="category-pill" onclick="setCategory('Meals', this)">🥪 Light Bites / Meals</div>
+        <div class="category-pill" onclick="setCategory('Retail', this)">🛍️ Packed Retail</div>
         <div class="category-pill" onclick="setCategory('Stock-Low', this)">⚠️ Low Stock</div>
       </div>
 
@@ -1415,6 +1556,32 @@
       </div>
     </aside>
   </main>
+
+  <!-- Elegant Creative Footer -->
+  <footer class="pos-footer">
+    <div class="footer-left">
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <img src="/logo.png" alt="am_cafe Logo" style="width: 38px; height: 38px; border-radius: 50%; border: 1.5px solid rgba(245, 158, 11, 0.5); box-shadow: 0 0 12px rgba(245, 158, 11, 0.35);">
+        <div>
+          <div class="footer-creative-line">
+            <span>✨</span> "Every sip tells a story, and every cup is crafted with heart. Thank you for making our day brew-tiful!" <span>☕</span>
+          </div>
+          <div class="footer-sub">
+            ABI POS • am_cafe • Good Food • Better Mood • Hospital Road, Jaffna, Sri Lanka 🇱🇰
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-pill">
+        <span class="pulsing-dot"></span>
+        <span>MySQL InnoDB Locked</span>
+      </div>
+      <div class="footer-pill">
+        <span>🇱🇰 Currency: LKR</span>
+      </div>
+    </div>
+  </footer>
 
   <!-- Live Concurrency Duel Modal -->
   <div class="modal-overlay" id="concurrencyModal">
@@ -1840,9 +2007,24 @@
       exportCsvReport();
     }
 
+    async function seedSampleCatalog(force = false) {
+      showToast(force ? 'Resetting and cleanly syncing 50+ items...' : 'Syncing am_cafe catalog to MySQL...', 'info');
+      try {
+        const res = await fetch(`/products/seed${force ? '?force=true' : ''}`, { method: 'POST' });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Seed failed');
+        soundSuccess();
+        showToast(data.message || 'All items synced successfully!', 'success');
+        await refreshData();
+      } catch (err) {
+        soundError();
+        showToast('Seed failed: ' + err.message, 'error');
+      }
+    }
+
     function seedSampleCatalogFromMenu() {
       toggleMenuDropdown();
-      seedSampleCatalog();
+      seedSampleCatalog(true);
     }
 
     function printZReportFromMenu() {
@@ -1966,40 +2148,60 @@
     }
 
     function getItemCategory(p) {
-      const name = p.name.toLowerCase();
-      if (name.includes('espresso') || name.includes('brew') || name.includes('coffee') || name.includes('macchiato') || name.includes('latte') || name.includes('chai') || name.includes('water') || name.includes('tea')) return 'Coffee';
-      if (name.includes('croissant') || name.includes('cookie') || name.includes('muffin') || name.includes('pastry') || name.includes('cake') || name.includes('bread') || name.includes('snack')) return 'Bakery';
-      if (name.includes('toast') || name.includes('bagel') || name.includes('panini') || name.includes('sandwich') || name.includes('egg') || name.includes('brunch')) return 'Brunch';
-      if (name.includes('mug') || name.includes('bean') || name.includes('roast') || name.includes('merch') || name.includes('cup') || name.includes('bag')) return 'Retail';
-      return 'Coffee';
+      const name = p.name;
+      if (name.includes('[HOT-') || name.startsWith('HOT-')) return 'Hot';
+      if (name.includes('[COLD-') || name.startsWith('COLD-')) return 'Cold';
+      if (name.includes('[SNK-') || name.startsWith('SNK-')) return 'Snacks';
+      if (name.includes('[SWT-') || name.startsWith('SWT-')) return 'Sweets';
+      if (name.includes('[LCH-') || name.startsWith('LCH-')) return 'Meals';
+      if (name.includes('[RET-') || name.startsWith('RET-')) return 'Retail';
+
+      const n = name.toLowerCase();
+      if (n.includes('tea') || n.includes('coffee') || n.includes('chai') || n.includes('cappuccino') || n.includes('latte') || n.includes('chocolate') || n.includes('milk')) return 'Hot';
+      if (n.includes('juice') || n.includes('cooler') || n.includes('lassi') || n.includes('faluda') || n.includes('iced') || n.includes('water') || n.includes('crush') || n.includes('moru') || n.includes('buttermilk')) return 'Cold';
+      if (n.includes('roll') || n.includes('vadai') || n.includes('samosa') || n.includes('bun') || n.includes('pastry') || n.includes('puff')) return 'Snacks';
+      if (n.includes('sundae') || n.includes('ice cream') || n.includes('brownie') || n.includes('payasam') || n.includes('halwa') || n.includes('peda') || n.includes('cake') || n.includes('laddu') || n.includes('jamun') || n.includes('moddakam') || n.includes('susiyam') || n.includes('treacle') || n.includes('curd')) return 'Sweets';
+      if (n.includes('kotthu') || n.includes('toast') || n.includes('sandwich') || n.includes('roti') || n.includes('paan')) return 'Meals';
+      if (n.includes('murukku') || n.includes('mixture') || n.includes('urundai') || n.includes('jaggery') || n.includes('packet')) return 'Retail';
+
+      return 'Hot';
     }
 
     function getItemEmoji(name) {
       const n = name.toLowerCase();
-      if (n.includes('espresso')) return '☕';
-      if (n.includes('flat white') || n.includes('cappuccino') || n.includes('americano') || n.includes('cortado')) return '☕';
-      if (n.includes('cold brew') || n.includes('iced') || n.includes('drip')) return '🧊';
-      if (n.includes('macchiato') || n.includes('latte') || n.includes('coffee')) return '☕';
-      if (n.includes('mocha')) return '🍫';
-      if (n.includes('matcha')) return '🍵';
-      if (n.includes('chai')) return '🫖';
-      if (n.includes('cooler') || n.includes('lemonade') || n.includes('yuzu')) return '🍋';
-      if (n.includes('water') || n.includes('sparkling')) return '💧';
-      if (n.includes('croissant')) return '🥐';
-      if (n.includes('chocolat')) return '🍫';
-      if (n.includes('cookie')) return '🍪';
-      if (n.includes('muffin')) return '🧁';
-      if (n.includes('cake')) return '🍰';
-      if (n.includes('roll') || n.includes('cinnamon')) return '🥨';
-      if (n.includes('danish') || n.includes('pastry')) return '🥮';
-      if (n.includes('toast') || n.includes('avocado')) return '🥑';
-      if (n.includes('bagel') || n.includes('salmon')) return '🥯';
-      if (n.includes('panini') || n.includes('sandwich')) return '🥪';
-      if (n.includes('bacon') || n.includes('bun')) return '🥓';
-      if (n.includes('mug')) return '🏺';
-      if (n.includes('tumbler')) return '🥤';
-      if (n.includes('bean') || n.includes('roast') || n.includes('yirgacheffe')) return '🫘';
-      return '☕';
+      // Hot
+      if (n.includes('sukku') || n.includes('filter coffee') || n.includes('cappuccino') || n.includes('latte')) return '☕';
+      if (n.includes('tea') || n.includes('chai')) return '🫖';
+      if (n.includes('chocolate')) return '🍫';
+      if (n.includes('milk')) return '🥛';
+      // Cold
+      if (n.includes('nelli') || n.includes('cooler') || n.includes('lime')) return '🍋';
+      if (n.includes('rose milk')) return '🌸';
+      if (n.includes('mango') || n.includes('papaya') || n.includes('juice')) return '🥭';
+      if (n.includes('lassi') || n.includes('moru') || n.includes('buttermilk')) return '🥛';
+      if (n.includes('faluda') || n.includes('sundae')) return '🍨';
+      if (n.includes('iced coffee')) return '🧊';
+      if (n.includes('water')) return '💧';
+      // Snacks
+      if (n.includes('roll')) return '🌯';
+      if (n.includes('vadai')) return '🍩';
+      if (n.includes('samosa')) return '🥟';
+      if (n.includes('roti')) return '🫓';
+      if (n.includes('bun') || n.includes('puff')) return '🥐';
+      // Sweets
+      if (n.includes('brownie') || n.includes('cake')) return '🍰';
+      if (n.includes('payasam') || n.includes('curd')) return '🍯';
+      if (n.includes('halwa') || n.includes('peda') || n.includes('laddu') || n.includes('jamun') || n.includes('susiyam') || n.includes('moddakam')) return '🍬';
+      if (n.includes('ice cream') || n.includes('scoop')) return '🍨';
+      // Meals
+      if (n.includes('kotthu')) return '🍲';
+      if (n.includes('toast') || n.includes('sandwich')) return '🥪';
+      if (n.includes('paan')) return '🍞';
+      // Retail
+      if (n.includes('murukku') || n.includes('mixture')) return '🥨';
+      if (n.includes('sesame') || n.includes('urundai')) return '🍘';
+      if (n.includes('jaggery')) return '🪵';
+      return '✨';
     }
 
     function setCategory(cat, el) {
@@ -2010,24 +2212,40 @@
     }
 
     const CATEGORY_META = {
-      'Coffee': {
-        name: 'Coffee & Brew',
+      'Hot': {
+        name: 'Hot Beverage',
+        color: '#fb923c',
+        glowRgb: '251, 146, 60',
+        gradient: 'linear-gradient(135deg, #ea580c 0%, #fb923c 100%)',
+        badgeBg: 'rgba(251, 146, 60, 0.15)',
+        badgeBorder: 'rgba(251, 146, 60, 0.3)'
+      },
+      'Cold': {
+        name: 'Cold Beverage',
         color: '#38bdf8',
         glowRgb: '56, 189, 248',
         gradient: 'linear-gradient(135deg, #0284c7 0%, #38bdf8 100%)',
         badgeBg: 'rgba(56, 189, 248, 0.15)',
         badgeBorder: 'rgba(56, 189, 248, 0.3)'
       },
-      'Bakery': {
-        name: 'Fresh Pastry',
-        color: '#fbbf24',
-        glowRgb: '251, 191, 36',
-        gradient: 'linear-gradient(135deg, #d97706 0%, #fbbf24 100%)',
-        badgeBg: 'rgba(251, 191, 36, 0.15)',
-        badgeBorder: 'rgba(251, 191, 36, 0.3)'
+      'Snacks': {
+        name: 'Savory Snack',
+        color: '#facc15',
+        glowRgb: '250, 204, 21',
+        gradient: 'linear-gradient(135deg, #ca8a04 0%, #facc15 100%)',
+        badgeBg: 'rgba(250, 204, 21, 0.15)',
+        badgeBorder: 'rgba(250, 204, 21, 0.3)'
       },
-      'Brunch': {
-        name: 'Brunch & Toast',
+      'Sweets': {
+        name: 'Dessert & Sweet',
+        color: '#f472b6',
+        glowRgb: '244, 114, 182',
+        gradient: 'linear-gradient(135deg, #db2777 0%, #f472b6 100%)',
+        badgeBg: 'rgba(244, 114, 182, 0.15)',
+        badgeBorder: 'rgba(244, 114, 182, 0.3)'
+      },
+      'Meals': {
+        name: 'Light Meal',
         color: '#34d399',
         glowRgb: '52, 211, 153',
         gradient: 'linear-gradient(135deg, #059669 0%, #34d399 100%)',
@@ -2035,7 +2253,7 @@
         badgeBorder: 'rgba(52, 211, 153, 0.3)'
       },
       'Retail': {
-        name: 'Beans & Merch',
+        name: 'Packed Retail',
         color: '#c084fc',
         glowRgb: '192, 132, 252',
         gradient: 'linear-gradient(135deg, #7c3aed 0%, #c084fc 100%)',
@@ -2093,11 +2311,11 @@
                     ${meta.name}
                   </span>
                   <div style="display: flex; gap: 0.35rem; align-items: center;">
-                    <span class="sku-badge">SKU #${p.id}</span>
+                    <span class="sku-badge">${p.name.startsWith('[') && p.name.includes(']') ? p.name.split(']')[0].replace('[', '') : `SKU #${p.id}`}</span>
                   </div>
                 </div>
               </div>
-              <h3 class="card-title">${escapeHtml(p.name)}</h3>
+              <h3 class="card-title">${escapeHtml(p.name.replace(/^\[[A-Z0-9-]+\]\s*/, ''))}</h3>
               <span class="stock-chip ${chipClass}">${chipText}</span>
               <div class="card-price">
                 <span class="curr-symbol" style="font-size: 0.9rem; font-weight: 700; color: var(--accent-light);">LKR</span> ${Number(p.price).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
@@ -2261,10 +2479,12 @@
       checkoutBtn.disabled = false;
       container.innerHTML = items.map(({ product, quantity }) => {
         const lineTotal = Number(product.price) * quantity;
+        const cleanName = product.name.replace(/^\[[A-Z0-9-]+\]\s*/, '');
+        const skuCode = product.name.startsWith('[') && product.name.includes(']') ? product.name.split(']')[0].replace('[', '') : `#${product.id}`;
         return `
           <div class="cart-row">
             <div class="cart-row-left">
-              <h4>${escapeHtml(product.name)}</h4>
+              <h4><span style="font-size: 0.72rem; color: var(--accent-light); font-family: 'JetBrains Mono'; margin-right: 4px;">[${skuCode}]</span> ${escapeHtml(cleanName)}</h4>
               <p>LKR ${Number(product.price).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} × ${quantity} = <strong>LKR ${lineTotal.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong></p>
             </div>
             <div class="stepper">
@@ -2547,6 +2767,9 @@
         const sheet = document.getElementById('receiptContent');
         sheet.innerHTML = `
           <div class="receipt-header">
+            <div style="text-align: center; margin-bottom: 0.4rem;">
+              <img src="/logo.png" alt="am_cafe" style="width: 48px; height: 48px; border-radius: 50%; object-fit: cover;">
+            </div>
             <div style="font-size: 1.1rem; font-weight: 900;">DAILY Z-REPORT / SHIFT SUMMARY</div>
             <div style="font-size: 0.75rem; font-weight: 600; color: #444;">am_cafe CAFE REGISTER #01 — JAFFNA, SRI LANKA 🇱🇰</div>
             <div style="font-size: 0.75rem;">${new Date().toLocaleString()}</div>
@@ -2585,8 +2808,12 @@
       const sheet = document.getElementById('receiptContent');
       sheet.innerHTML = `
         <div class="receipt-header">
-          <div style="font-size: 1.25rem; font-weight: 900; letter-spacing: 0.05em; color: #111;">am_cafe ☕</div>
-          <div style="font-size: 0.78rem; font-weight: 600; color: #333;">Hospital Road, Jaffna, Sri Lanka 🇱🇰</div>
+          <div style="text-align: center; margin-bottom: 0.5rem;">
+            <img src="/logo.png" alt="am_cafe" style="width: 55px; height: 55px; border-radius: 50%; object-fit: cover;">
+          </div>
+          <div style="font-size: 1.25rem; font-weight: 900; letter-spacing: 0.05em; color: #111;">am_cafe</div>
+          <div style="font-size: 0.72rem; letter-spacing: 0.1em; color: #666; font-weight: 600;">GOOD FOOD • BETTER MOOD</div>
+          <div style="font-size: 0.78rem; font-weight: 600; color: #333; margin-top: 2px;">Hospital Road, Jaffna, Sri Lanka 🇱🇰</div>
           <div style="font-size: 0.75rem; color: #555;">Hotline: +94 21 222 3456 | cafe@amcafe.lk</div>
           <div style="font-size: 0.75rem; margin-top: 4px;">BARISTA / REGISTER: ${currentCashier} (POS #01)</div>
           <div style="font-size: 0.75rem;">GUEST: ${currentCustomer}</div>
@@ -2609,12 +2836,18 @@
         <div class="receipt-divider"></div>
 
         <div style="margin-bottom: 0.5rem; font-weight: 700;">CAFE ORDER ITEMS:</div>
-        ${(order.items || []).map(i => `
-          <div class="receipt-row">
-            <span>Prod #${i.productId} (x${i.quantity})</span>
-            <span>LKR ${(Number(i.priceAtOrder) * i.quantity).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
-          </div>
-        `).join('')}
+        ${(order.items || []).map(i => {
+          const matched = products.find(p => p.id === i.productId);
+          const rawName = matched ? matched.name : `Product #${i.productId}`;
+          const cleanName = rawName.replace(/^\[[A-Z0-9-]+\]\s*/, '');
+          const skuCode = rawName.startsWith('[') && rawName.includes(']') ? rawName.split(']')[0].replace('[', '') : `#${i.productId}`;
+          return `
+            <div class="receipt-row">
+              <span>[${skuCode}] ${cleanName} (×${i.quantity})</span>
+              <span>LKR ${(Number(i.priceAtOrder) * i.quantity).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+            </div>
+          `;
+        }).join('')}
 
         <div class="receipt-divider"></div>
 
@@ -2681,18 +2914,6 @@
       }
     }
 
-    async function seedSampleCatalog() {
-      try {
-        const res = await fetch('/products/seed', { method: 'POST' });
-        const data = await res.json();
-        soundSuccess();
-        showToast('Sample retail & cafe catalog seeded!', 'success');
-        await refreshData();
-      } catch (e) {
-        showToast('Failed to seed catalog', 'error');
-      }
-    }
-
     function showToast(msg, type = 'info') {
       const shelf = document.getElementById('toast-shelf');
       const pill = document.createElement('div');
@@ -2740,7 +2961,15 @@
       }
     });
 
-    refreshData();
+    async function initApp() {
+      await refreshData();
+      // Ensure all 50+ authentic Jaffna items are seeded if table has fewer items or placeholders
+      if (products.length < 50 || products.some(p => p.name.includes('Coffee Cup') || p.name.includes('AM Espresso Double Shot'))) {
+        await seedSampleCatalog();
+      }
+    }
+
+    initApp();
     setInterval(refreshData, 8000);
   </script>
 </body>

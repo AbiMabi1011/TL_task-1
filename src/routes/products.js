@@ -6,51 +6,82 @@ const router = express.Router();
 // SEED DEMO PRODUCTS FOR AM_CAFE
 router.post('/seed', async (req, res) => {
   const defaultItems = [
-    // ☕ Classic Espresso & Hot Brews
-    { name: 'AM Espresso Double Shot', price: 650.00, stock: 65 },
-    { name: 'Caffè Americano (12oz)', price: 750.00, stock: 55 },
-    { name: 'Flat White (Velvet Microfoam)', price: 950.00, stock: 45 },
-    { name: 'Classic Cappuccino with Cocoa Dust', price: 900.00, stock: 40 },
-    { name: 'Spanish Vanilla Latte', price: 1100.00, stock: 40 },
-    { name: 'Caramel Cloud Macchiato', price: 1150.00, stock: 35 },
-    { name: 'Belgian Dark Mocha', price: 1200.00, stock: 30 },
-    { name: 'Cortado (1:1 Ratio)', price: 850.00, stock: 28 },
+    // ☕ Hot Beverages
+    { name: '[HOT-01] Jaffna Sukku Malli Coffee (Dry Ginger & Coriander)', price: 120.00, stock: 100 },
+    { name: '[HOT-02] Classic Jaffna Milk Tea', price: 100.00, stock: 250 },
+    { name: '[HOT-03] Plain Tea (Kahata)', price: 60.00, stock: 200 },
+    { name: '[HOT-04] Palm Jaggery Tea (Karuppatti Tea)', price: 140.00, stock: 120 },
+    { name: '[HOT-05] Masala Chai', price: 180.00, stock: 80 },
+    { name: '[HOT-06] Fresh Cow Milk with Jaggery', price: 220.00, stock: 60 },
+    { name: '[HOT-07] Hot Chocolate', price: 550.00, stock: 40 },
+    { name: '[HOT-08] Filter Coffee (South Indian Style)', price: 150.00, stock: 90 },
+    { name: '[HOT-09] Cappuccino', price: 620.00, stock: 50 },
+    { name: '[HOT-10] Café Latte', price: 650.00, stock: 50 },
 
-    // 🧊 Cold Brews & Refreshers
-    { name: 'AM Signature Cold Brew (16oz)', price: 950.00, stock: 50 },
-    { name: 'Vanilla Sweet Cream Cold Brew', price: 1150.00, stock: 35 },
-    { name: 'Kyoto Drip Slow Cold Brew', price: 1100.00, stock: 25 },
-    { name: 'Iced Brown Sugar Oat Latte', price: 1250.00, stock: 40 },
-    { name: 'Ceylon Spiced Chai Latte', price: 850.00, stock: 40 },
-    { name: 'Organic Ceremonial Matcha Latte', price: 1200.00, stock: 30 },
-    { name: 'Yuzu Lemonade Sparkling Cooler', price: 850.00, stock: 35 },
-    { name: 'San Pellegrino Sparkling (500ml)', price: 750.00, stock: 50 },
+    // 🧊 Cold Beverages
+    { name: '[COLD-01] Jaffna Nelli Crush Drink (Gooseberry)', price: 180.00, stock: 75 },
+    { name: '[COLD-02] Rose Milk with Sabja Seeds', price: 220.00, stock: 60 },
+    { name: '[COLD-03] Fresh Karthacolomban Mango Juice', price: 380.00, stock: 45 },
+    { name: '[COLD-04] Fresh Papaya Juice', price: 280.00, stock: 50 },
+    { name: '[COLD-05] Fresh Lime & Mint Cooler', price: 220.00, stock: 60 },
+    { name: '[COLD-06] Sweet Lassi', price: 320.00, stock: 40 },
+    { name: '[COLD-07] Salted Mint Buttermilk (Moru)', price: 160.00, stock: 55 },
+    { name: '[COLD-08] Iced Coffee (Sri Lankan Café Style)', price: 300.00, stock: 80 },
+    { name: '[COLD-09] Faluda (with Ice Cream & Jelly)', price: 450.00, stock: 50 },
+    { name: '[COLD-10] Bottled Mineral Water (500ml)', price: 100.00, stock: 150 },
 
-    // 🥐 Fresh Artisan Bakery & Pastries
-    { name: 'Flaky French Butter Croissant', price: 650.00, stock: 30 },
-    { name: 'Almond Frangipane Croissant', price: 850.00, stock: 20 },
-    { name: 'Pain au Chocolat (Dark Cocoa)', price: 800.00, stock: 25 },
-    { name: 'Blueberry Cream Cheese Muffin', price: 750.00, stock: 30 },
-    { name: 'Double Fudge Belgian Cookie', price: 550.00, stock: 45 },
-    { name: 'Cinnamon Swirl Brioche Roll', price: 750.00, stock: 22 },
-    { name: 'Carrot Walnut Cake with Cream Frosting', price: 950.00, stock: 18 },
-    { name: 'Pistachio Glazed Danish', price: 900.00, stock: 15 },
+    // 🥟 Savory Snacks
+    { name: '[SNK-01] Jaffna Fish Roll', price: 140.00, stock: 70 },
+    { name: '[SNK-02] Spicy Chicken Roll', price: 160.00, stock: 60 },
+    { name: '[SNK-03] Crispy Vegetable Roll', price: 100.00, stock: 80 },
+    { name: '[SNK-04] Ulundu Vadai (with Coconut Chutney)', price: 80.00, stock: 120 },
+    { name: '[SNK-05] Masala / Paruppu Vadai', price: 70.00, stock: 140 },
+    { name: '[SNK-06] Vazhaipoo Vadai (Banana Blossom Vadai)', price: 90.00, stock: 60 },
+    { name: '[SNK-07] Mutton Samosa', price: 180.00, stock: 50 },
+    { name: '[SNK-08] Vegetable Samosa', price: 80.00, stock: 90 },
+    { name: '[SNK-09] Spicy Egg Roti Pocket', price: 180.00, stock: 45 },
+    { name: '[SNK-10] Seeni Sambol Bun', price: 100.00, stock: 60 },
+    { name: '[SNK-11] Chicken Curry Bun', price: 150.00, stock: 55 },
+    { name: '[SNK-12] Creamy Chicken Puff Pastry', price: 220.00, stock: 40 },
 
-    // 🥪 Cafe Brunch & Toasts
-    { name: 'Avocado Poached Egg Sourdough Toast', price: 1650.00, stock: 18 },
-    { name: 'Smoked Salmon Brioche Bagel', price: 2100.00, stock: 14 },
-    { name: 'Truffle Mushroom Melt Panini', price: 1750.00, stock: 16 },
-    { name: 'Crispy Bacon & Cheddar Brioche Bun', price: 1550.00, stock: 20 },
-    { name: 'Mediterranean Halloumi Pesto Toast', price: 1600.00, stock: 15 },
+    // 🍨 Desserts & Sweets
+    { name: '[SWT-01] Jaffna Rio Special Sundae Cup', price: 450.00, stock: 50 },
+    { name: '[SWT-02] Vanilla Scoop (with Jelly & Cashew)', price: 250.00, stock: 80 },
+    { name: '[SWT-03] Chocolate Brownie', price: 480.00, stock: 35 },
+    { name: '[SWT-04] Jaffna Paal Payasam (Cup)', price: 220.00, stock: 40 },
+    { name: '[SWT-05] Susiyam (Sweet Lentil & Jaggery Fritter)', price: 90.00, stock: 60 },
+    { name: '[SWT-06] Sweet Moddakam (Coconut & Jaggery)', price: 110.00, stock: 50 },
+    { name: '[SWT-07] Jaffna Halwa (Per Slice)', price: 120.00, stock: 70 },
+    { name: '[SWT-08] Paal Cova (Milk Peda)', price: 150.00, stock: 65 },
+    { name: '[SWT-09] Jam Swiss Roll Slice', price: 120.00, stock: 50 },
+    { name: '[SWT-10] Ribbon Butter Cake Slice', price: 140.00, stock: 45 },
+    { name: '[SWT-11] Curd & Kithul Treacle Pot', price: 280.00, stock: 30 },
+    { name: '[SWT-12] Rava Laddu (2 pcs)', price: 160.00, stock: 55 },
+    { name: '[SWT-13] Gulab Jamun (2 pcs)', price: 220.00, stock: 40 },
 
-    // ✨ Coffee Beans & Cafe Merch
-    { name: 'AM Jaffna Roast Whole Bean (250g)', price: 2800.00, stock: 25 },
-    { name: 'Ethiopian Yirgacheffe Single Origin (250g)', price: 3400.00, stock: 20 },
-    { name: 'AM Cafe Matte Black Ceramic Mug (350ml)', price: 3200.00, stock: 20 },
-    { name: 'Barista Vacuum Insulated Tumbler (500ml)', price: 4500.00, stock: 15 }
+    // 🥪 Light Bites / Meals
+    { name: '[LCH-01] Egg Roti with Gravy', price: 250.00, stock: 40 },
+    { name: '[LCH-02] Veg Kotthu (Cup/Small)', price: 550.00, stock: 35 },
+    { name: '[LCH-03] Chicken Kotthu (Cup/Small)', price: 750.00, stock: 35 },
+    { name: '[LCH-04] Cheese & Tomato Toast', price: 450.00, stock: 30 },
+    { name: '[LCH-05] Spicy Tuna Sandwich', price: 520.00, stock: 25 },
+    { name: '[LCH-06] Roast Paan with Jaffna Fish Curry Dip', price: 480.00, stock: 30 },
+
+    // 🛍️ Packed Retail Items
+    { name: '[RET-01] Traditional Spicy Murukku Packet (200g)', price: 280.00, stock: 40 },
+    { name: '[RET-02] Jaffna Special Mixture Packet (250g)', price: 380.00, stock: 50 },
+    { name: '[RET-03] Sweet Sesame Balls (Ellu Urundai - 5 pcs)', price: 250.00, stock: 45 },
+    { name: '[RET-04] Pure Palm Jaggery Block (Karuppatti 500g)', price: 650.00, stock: 25 }
   ];
 
   try {
+    if (req.query.force === 'true' || req.body.force === true) {
+      await prisma.orderItem.deleteMany();
+      await prisma.paymentAttempt.deleteMany();
+      await prisma.order.deleteMany();
+      await prisma.product.deleteMany();
+    }
+
     for (const item of defaultItems) {
       const existing = await prisma.product.findFirst({ where: { name: item.name } });
       if (!existing) {
@@ -63,10 +94,10 @@ router.post('/seed', async (req, res) => {
       }
     }
     const all = await prisma.product.findMany({ orderBy: { id: 'asc' } });
-    res.json({ message: 'am_cafe menu seeded successfully', products: all });
+    res.json({ message: 'am_cafe authentic Jaffna catalog seeded successfully', count: all.length, products: all });
   } catch (err) {
     console.error('Seed error:', err);
-    res.status(500).json({ error: 'Failed to seed am_cafe menu' });
+    res.status(500).json({ error: 'Failed to seed am_cafe menu: ' + err.message });
   }
 });
 
