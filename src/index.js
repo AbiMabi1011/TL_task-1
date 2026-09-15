@@ -217,9 +217,19 @@ app.listen(PORT, async () => {
           });
         }
       }
-      console.log('✅ 55 Authentic Jaffna Products seeded successfully into MySQL!');
+      console.log('✅ 55 Authentic Jaffna Products verified/seeded successfully!');
     }
   } catch (err) {
     console.error('Database connection / seeding check error:', err.message);
   }
 });
+
+// Export handler for Cloudflare Workers / module runtimes
+module.exports = app;
+module.exports.default = {
+  fetch(request, env, ctx) {
+    return app(request, env, ctx);
+  }
+};
+
+
